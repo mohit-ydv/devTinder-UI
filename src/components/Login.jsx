@@ -8,6 +8,7 @@ import { BASE_URL } from '../utils/constants';
 const Login = () => {
     const [emailId, setEmailId] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [error, setError] = React.useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Login = () => {
             dispatch(addUser(res.data));
             navigate('/');
         } catch (error) {
-            console.error("Login failed:", error);
+            setError(error?.response?.data?.message || "Login failed");
         }
     };
 
@@ -46,6 +47,7 @@ const Login = () => {
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="" className="input input-bordered w-full max-w-xs" />
                         </label>
                     </div>
+                    <p className='text-red-500'>{error}</p>
                     <div className="card-actions justify-center m-2">
                         <button onClick={handleLogin} className="btn btn-primary">Login</button>
                     </div>
