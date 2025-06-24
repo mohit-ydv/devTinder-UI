@@ -1,24 +1,32 @@
 import axios from 'axios';
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../utils/constants';
 
 const Login = () => {
     const [emailId, setEmailId] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         try {
-            const res = await axios.post('http://localhost:3000/login', {
+            const res = await axios.post(BASE_URL + '/login', {
                 emailId,
                 password
             }, {
                 withCredentials: true // This is important to include cookies in the request
             });
             console.log("Login successful:", res.data);
-
+            dispatch(addUser(res.data));
+            navigate('/');
         } catch (error) {
             console.error("Login failed:", error);
         }
-    }
+    };
+
     return (
         <div className='flex justify-center items-center my-10'>
             <div className="card bg-base-300 w-96 shadow-xl">
