@@ -6,6 +6,7 @@ import { BASE_URL } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import axios from 'axios';
+import Feed from './Feed';
 
 const Body = () => {
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Body = () => {
     return (
         <div>
             <NavBar />
+            <Feed />
             <Outlet />
             {/* <Footer /> */}
         </div>
