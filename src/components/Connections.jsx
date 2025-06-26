@@ -33,7 +33,7 @@ const Connections = () => {
         <div className='flex m-10 gap-4'>
             {
                 connections.map((user, i) => (
-                    <div className="card bg-base-300 w-96 shadow-xl">
+                    <div key={i} className="card bg-base-300 w-96 shadow-xl">
                         <figure className="px-10 pt-10">
                             <img
                                 src={user.photoUrl}
