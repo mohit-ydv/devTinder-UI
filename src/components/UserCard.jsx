@@ -1,11 +1,10 @@
-import React from 'react'
 import { BASE_URL } from '../utils/constants';
 import { useDispatch } from 'react-redux';
 import { removeUserFromFeed } from '../utils/feedSlice';
 import axios from 'axios';
 
 const UserCard = ({ user }) => {
-    const { _id, firstName, lastName, age, about, gender, photoUrl } = user;
+    const { _id, firstName, age, about, gender, photoUrl } = user;
     const dispatch = useDispatch();
 
     const handleSendRequest = async (status, userId) => {

@@ -6,14 +6,12 @@ import { addConnections } from '../utils/connectionSlice';
 
 const Connections = () => {
     const connections = useSelector(store => store.connections);
-    // const [connections, setConnections] = React.useState([]);
     const dispatch = useDispatch();
     const fetchConnections = async () => {
         try {
             const res = await axios.get(BASE_URL + '/user/connections', {
                 withCredentials: true
             });
-            // setConnections(res.data);
             dispatch(addConnections(res.data));
         } catch (error) {
             console.log('Error fetching connections: ', error.message);
@@ -26,7 +24,7 @@ const Connections = () => {
 
     if (!connections) return;
 
-    if (connections.length === 0) return <h1>No connections found.</h1>
+    if (connections.length === 0) return <h1 className='flex justify-center my-10'>No connections found.</h1>
 
     return connections && (<div className='text-center'>
         <h1 className='text-bold text-2xl m-5'>Connections</h1>
